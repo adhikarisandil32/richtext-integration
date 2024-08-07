@@ -1,0 +1,16 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.tiptap {
+  height: 200px;
+  overflow: auto;
+}
+.tiptap ol {
+  margin-left: 2rem;
+  list-style: decimal;
+}
+.tiptap ul {
+  margin-left: 2rem;
+  list-style: disc;
+}
