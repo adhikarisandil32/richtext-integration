@@ -1,11 +1,14 @@
-import React, { useState } from "react"
+import React, { ReactElement, useRef, useState } from "react"
 import Button from "../elements/button"
 import { Bold, Italic, Link, List, ListOrdered, Strikethrough, Underline, X } from "lucide-react"
 import { twMerge } from "tailwind-merge"
 import Modal from "./modal"
+import Input from "../elements/input"
 
 export default function RichtextToolbar({ editor }: any) {
   const [open, setOpen] = useState<boolean>(false)
+
+  const inputRef = useRef<HTMLInputElement | null>()
 
   return (
     <div className="flex gap-2 border-t-2 border-[#bbb] pt-2">
@@ -73,11 +76,46 @@ export default function RichtextToolbar({ editor }: any) {
             <Link />
           </Modal.Trigger>
 
-          <Modal.Content>
-            <Button>
-              <X />
-            </Button>
-          </Modal.Content>
+          {
+            <Modal.Content>
+              <div className="w-[400px] space-y-4 rounded-md bg-blue-100 p-4">
+                <div className="text-right">
+                  <Button
+                    onClick={() => setOpen(false)}
+                    className="p-0"
+                  >
+                    <X />
+                  </Button>
+                </div>
+
+                <div>
+                  <Input
+                    inputRef={inputRef}
+                    className="w-full rounded-md bg-white/75 p-2 outline-none"
+                    placeholder="https://example.com"
+                  />
+                </div>
+
+                <div className="flex justify-end gap-2">
+                  <Button
+                    className="bg-red-800 text-white"
+                    onClick={() => setOpen(false)}
+                  >
+                    Cancel
+                  </Button>
+                  <Button
+                    className="bg-blue-800 text-white"
+                    onClick={() => {
+                      editor.chain().focus().setLink({ href: inputRef.current?.value, target: "_blank" }).run()
+                      setOpen(false)
+                    }}
+                  >
+                    Set Link
+                  </Button>
+                </div>
+              </div>
+            </Modal.Content>
+          }
         </Modal>
       </div>
     </div>

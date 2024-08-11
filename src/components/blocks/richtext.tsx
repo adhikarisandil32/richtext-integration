@@ -21,7 +21,7 @@ export default function Richtext({ required, errors, getValues, setValue, contro
   const [hasValue, setHasValue] = useState<boolean>(false)
 
   const editor = useEditor({
-    extensions: [StarterKit, Underline, Link.extend({ inclusive: false })],
+    extensions: [StarterKit, Underline, Link.extend({ inclusive: false }).configure({ openOnClick: true })],
     editorProps: {
       attributes: {
         class: "relative outline-none border-none",

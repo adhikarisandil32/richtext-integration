@@ -14,3 +14,6 @@
   margin-left: 2rem;
   list-style: disc;
 }
+.tiptap a {
+  @apply text-blue-800 underline;
+}
