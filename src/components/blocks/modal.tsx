@@ -14,7 +14,7 @@ type ModelProps = {
 
 type ModelTriggerProps = {
   children: React.ReactNode
-}
+} & HTMLAttributes<HTMLButtonElement>
 
 type ModelContentProps = {
   children: React.ReactNode

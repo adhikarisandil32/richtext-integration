@@ -72,7 +72,7 @@ export default function RichtextToolbar({ editor }: any) {
           onClose={() => setOpen(false)}
           onOpen={() => setOpen(true)}
         >
-          <Modal.Trigger>
+          <Modal.Trigger className={twMerge("px-2 py-1", editor.isActive("link") ? "bg-blue-800 text-white" : "")}>
             <Link />
           </Modal.Trigger>
 
