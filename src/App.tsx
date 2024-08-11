@@ -1,6 +1,6 @@
 import { User } from "lucide-react"
-import Richtext from "./components/richtext"
 import FormProvider from "./contexts/form-provider-context"
+import Form from "./components/structures/Form"
 
 function App() {
   return (
@@ -13,9 +13,7 @@ function App() {
       </div>
 
       <FormProvider>
-        <div>
-          <Richtext />
-        </div>
+        <Form />
       </FormProvider>
     </div>
   )

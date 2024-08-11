@@ -9,7 +9,7 @@ type ButtonProps = {
 export default React.forwardRef(function Button({ children, className, ...props }: ButtonProps, ref: any) {
   return (
     <button
-      className={twMerge("px-4 py-1 rounded-md", className)}
+      className={twMerge("rounded-md px-4 py-1", className)}
       ref={ref}
       {...props}
     >

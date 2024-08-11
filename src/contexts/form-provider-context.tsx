@@ -7,7 +7,7 @@ type FormProviderProps = {
 
 const FormContext = React.createContext<{}>({})
 
-export const useFormContext = () => {
+export const useFormContext = (): any => {
   const context = React.useContext(FormContext)
 
   if (!context) {
@@ -24,11 +24,12 @@ export default function FormProvider({ children }: FormProviderProps) {
     watch,
     setValue,
     getValues,
+    control,
     formState: { errors },
   } = useForm()
 
   return (
-    <FormContext.Provider value={{ handleSubmit, register, watch, setValue, getValues, errors }}>
+    <FormContext.Provider value={{ handleSubmit, control, register, watch, setValue, getValues, errors }}>
       {children}
     </FormContext.Provider>
   )
