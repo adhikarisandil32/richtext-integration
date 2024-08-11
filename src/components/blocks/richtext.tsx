@@ -4,7 +4,7 @@ import RichtextEditor from "./richtext-editor"
 import RichtextToolbar from "./richtext-toolbar"
 import Underline from "@tiptap/extension-underline"
 import { twMerge } from "tailwind-merge"
-import { useState } from "react"
+import React, { useState } from "react"
 import Link from "@tiptap/extension-link"
 
 type RichtextProp = {
@@ -17,7 +17,15 @@ type RichtextProp = {
   errors?: any
 }
 
-export default function Richtext({ required, errors, getValues, setValue, control, placeholder, name }: RichtextProp) {
+export default React.memo(function Richtext({
+  required,
+  errors,
+  getValues,
+  setValue,
+  control,
+  placeholder,
+  name,
+}: RichtextProp) {
   const [hasValue, setHasValue] = useState<boolean>(false)
 
   const editor = useEditor({
@@ -68,4 +76,4 @@ export default function Richtext({ required, errors, getValues, setValue, contro
       </div>
     </>
   )
-}
+})

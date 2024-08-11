@@ -70,52 +70,50 @@ export default function RichtextToolbar({ editor }: any) {
         <Modal
           open={open}
           onClose={() => setOpen(false)}
-          onOpen={() => setOpen(true)}
+          onOpen={() => (editor.isActive("link") ? editor.chain().focus().unsetLink().run() : setOpen(true))}
         >
           <Modal.Trigger className={twMerge("px-2 py-1", editor.isActive("link") ? "bg-blue-800 text-white" : "")}>
             <Link />
           </Modal.Trigger>
 
-          {
-            <Modal.Content>
-              <div className="w-[400px] space-y-4 rounded-md bg-blue-100 p-4">
-                <div className="text-right">
-                  <Button
-                    onClick={() => setOpen(false)}
-                    className="p-0"
-                  >
-                    <X />
-                  </Button>
-                </div>
-
-                <div>
-                  <Input
-                    inputRef={inputRef}
-                    className="w-full rounded-md bg-white/75 p-2 outline-none"
-                    placeholder="https://example.com"
-                  />
-                </div>
-
-                <div className="flex justify-end gap-2">
-                  <Button
-                    className="bg-red-800 text-white"
-                    onClick={() => setOpen(false)}
-                  >
-                    Cancel
-                  </Button>
-                  <Button
-                    className="bg-blue-800 text-white"
-                    onClick={() => {
-                      editor.chain().focus().setLink({ href: inputRef.current?.value, target: "_blank" }).run()
-                      setOpen(false)
-                    }}
-                  >
-                    Set Link
-                  </Button>
-                </div>
+          <Modal.Content>
+            <div className="w-[400px] space-y-4 rounded-md bg-blue-100 p-4">
+              <div className="text-right">
+                <Button
+                  onClick={() => setOpen(false)}
+                  className="p-0"
+                >
+                  <X />
+                </Button>
               </div>
-            </Modal.Content>
-          }
+
+              <div>
+                <Input
+                  inputRef={inputRef}
+                  className="w-full rounded-md bg-white/75 p-2 outline-none"
+                  placeholder="https://example.com"
+                />
+              </div>
+
+              <div className="flex justify-end gap-2">
+                <Button
+                  className="bg-red-800 text-white"
+                  onClick={() => setOpen(false)}
+                >
+                  Cancel
+                </Button>
+                <Button
+                  className="bg-blue-800 text-white"
+                  onClick={() => {
+                    editor.chain().focus().setLink({ href: inputRef.current?.value, target: "_blank" }).run()
+                    setOpen(false)
+                  }}
+                >
+                  Set Link
+                </Button>
+              </div>
+            </div>
+          </Modal.Content>
         </Modal>
       </div>
     </div>

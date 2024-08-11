@@ -59,7 +59,7 @@ Modal.Trigger = function ({ children, ...props }: ModelTriggerProps) {
   return (
     <Button
       {...props}
-      onClick={onOpen}
+      onClick={() => onOpen()}
     >
       {children}
     </Button>

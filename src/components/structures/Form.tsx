@@ -1,14 +1,16 @@
-import React from "react"
-import AnimatedInput from "../composites/animated-input"
 import Richtext from "../blocks/richtext"
 import Button from "../elements/button"
 import { useFormContext } from "../../contexts/form-provider-context"
 import AnimatedInputWrapper from "../blocks/animated-input-wrapper"
+import { useRef, useState } from "react"
 
 export default function Form() {
   const { control, getValues, errors, setValue, handleSubmit } = useFormContext()
-
-  const submitFn = (data: any) => console.log(data)
+  const [data, setData] = useState<string>()
+  const submitFn = (data: any) => {
+    console.log(data)
+    setData(JSON.stringify(data))
+  }
 
   return (
     <div className="space-y-8">
@@ -38,6 +40,11 @@ export default function Form() {
         >
           Submit
         </Button>
+      </div>
+
+      <div>
+        <h2 className="text-center text-3xl font-bold">Output</h2>
+        <div className="mx-auto w-[min(600px,100%)] text-center">{data}</div>
       </div>
     </div>
   )

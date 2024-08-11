@@ -3,7 +3,7 @@ import { useFormContext } from "../../contexts/form-provider-context"
 import AnimatedInput from "../composites/animated-input"
 import { AnimatedInputProps } from "../composites/animated-input"
 
-export default function AnimatedInputWrapper({ name, ...props }: AnimatedInputProps) {
+export default React.memo(function AnimatedInputWrapper({ name, ...props }: AnimatedInputProps) {
   const { register, getValues, errors } = useFormContext()
   const [hasValue, setHasValue] = useState<boolean>(false)
 
@@ -23,4 +23,4 @@ export default function AnimatedInputWrapper({ name, ...props }: AnimatedInputPr
       hasValue={hasValue}
     />
   )
-}
+})
